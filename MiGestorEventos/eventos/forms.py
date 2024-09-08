@@ -1,10 +1,13 @@
 from django import forms
+from .models import evento
 from django.core.exceptions import ValidationError
 
 class formularioEvento(forms.ModelForm):
-    nombre_evento = forms.CharField(label="Nombre del Evento",max_length=100)
-    def val_nombre(self):
-        nombre = self.cleaned_data['nombre']
+    class Meta:
+        model = evento
+        fields = ['nombre_event','organizador_relacion']
+    def clean_nombre_event(self):
+        nombre = self.cleaned_data['nombre_event']
         if "Cancelado" in nombre:
-            raise ValidationError("El nombre del evento no puede contener la palabra 'Cancelado'.")
+            raise forms.ValidationError("El nombre del evento no puede contener la palabra 'Cancelado'.")
         return nombre
