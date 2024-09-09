@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
     {% block title %}
-      <title>Crear eventos</title>
+      <title>Eventos</title>
     {% endblock %}
   </head>
   <body>
-        <form method="post">
+    <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Crear Evento</button>
-</form>
+        <button type="submit">Añadir Organizador</button>
+    </form>
   </body>
 </html>

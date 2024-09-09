@@ -1,23 +1,14 @@
 from django.shortcuts import render
-from .models import evento
+from .models import evento, organizador
 from .forms import formularioEvento
-from django.http import HttpResponse
-
-from django.views.generic import View
-from django.contrib.auth.forms import UserCreationForm
+# from django.http import HttpResponse
+# from django.views.generic import View
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView
 
 def lista_eventos(request):
     eventos = evento.objects.all()
-    nom_eventos = evento.nombre_event 
-    fech_eventos = evento.fecha 
-    org_eventos = evento.organizador_relacion
-    documento = """<html>
-    <body>
-    <h3> Lista de Eventos</h3>
-    <h1> %s %s %s </h1>
-    </body>
-    <html>""" % (nom_eventos, fech_eventos, org_eventos)
-    return HttpResponse(documento)
+    return render(request, 'lista_eventos.html', {'eventos': eventos})
 
 def crear_eventos(request):
     if request.method == 'POST':
@@ -28,3 +19,14 @@ def crear_eventos(request):
     else:
         form = formularioEvento()
     return render(request, 'crear_evento.html', {'form': form})
+
+
+class organizador_lista(ListView):
+    model = organizador
+    template_name = 'lista_organizadores.html'
+
+class organizador_añadir(CreateView):
+    model = organizador
+    fields = ['nombre_org']
+    template_name = 'añadir_organizadores.html'
+    success_url = '/eventos/organizadores/'

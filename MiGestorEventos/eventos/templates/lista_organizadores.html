@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% block title %}
+      <title>Organizadores</title>
+    {% endblock %}
+  </head>
+  <body>
+    <ul> 
+        <h2>Lista de Organizadores</h2>
+        <!-- Iterate over object_list -->
+        {% for object in object_list %} 
+        <!-- Display Objects -->
+        <li>{{ object.nombre_org }}</li>       
+        <hr/> 
+        <!-- If object_list is empty  -->
+        {% empty %} 
+        <li>Ningún organizador a sido introducido.</li> 
+        {% endfor %} 
+    </ul>    
+  </body>
+</html>

@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% block title %}
+      <title>Eventos</title>
+    {% endblock %}
+  </head>
+  <body>
+    <h1>Lista de eventos</h1>
+    <ul>
+        {% for evento in eventos %}
+            <li>{{ evento.nombre_event }} - {{ evento.fecha }} - ${{ evento.organizador_relacion }}</li>
+        {% endfor %}
+    </ul>
+  </body>
+</html>
