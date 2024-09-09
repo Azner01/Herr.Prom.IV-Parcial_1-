@@ -12,7 +12,6 @@ def lista_eventos(request):
 
 def crear_eventos(request):
     if request.method == 'POST':
-        print(request.POST)
         form = formularioEvento(request.POST)
         if form.is_valid():
             form.save()

@@ -4,6 +4,6 @@ from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("eventos/", include("eventos.urls", namespace="eventosApp")),
+    path("gestor_eventos/", include("eventos.urls", namespace="eventosApp")),
 ]
 
