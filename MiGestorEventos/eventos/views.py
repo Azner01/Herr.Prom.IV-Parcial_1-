@@ -12,6 +12,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
+#Vista de la página principal
 def pagina_principal(request):
     return render(request, 'menu_principal.html')
 

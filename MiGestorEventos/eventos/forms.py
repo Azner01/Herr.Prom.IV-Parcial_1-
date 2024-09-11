@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+#Formulario para añadir eventos con palabra excluyente
 class formularioEvento(forms.ModelForm):
     class Meta:
         model = evento
@@ -18,6 +19,7 @@ class formularioEvento(forms.ModelForm):
             raise forms.ValidationError("El nombre del evento no puede contener la palabra 'Cancelado'.")
         return nombre
 
+#Formulario para el inicio de sesión
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
