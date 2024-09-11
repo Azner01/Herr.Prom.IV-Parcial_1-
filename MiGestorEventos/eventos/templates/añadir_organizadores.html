@@ -13,9 +13,9 @@
 			height: 100%;
 			background: #7abecc !important;
 		}
-    h3{
-       text-align: center;
-    }
+		h3{
+		text-align: center;
+		}
 		.user_card {
 			width: 350px;
 			margin-top: auto;
@@ -72,6 +72,11 @@
 			padding: 10px;
 			margin-top: 10px;
 		}
+		#div-content{
+			width: 300px; 
+			margin: 0 auto;
+			margin-top: 100px;
+		}
 	</style>
   </head>
   <body>
@@ -82,7 +87,7 @@
     </form>
     <a href="."><h2>Ver Organizadores</h2></a> -->
 
-      <div class="container h-100" >
+      <div class="container h-100" id="div-content" >
         <div class="d-flex justify-content-center h-100">
           <div class="user_card">
             <div class="d-flex justify-content-center">
@@ -94,7 +99,7 @@
                 {{ form.as_p }}
                 <button type="submit">Añadir Organizador</button>
                 </form>
-                <a href="."><h2>Ver Organizadores</h2></a>
+                <a href="{% url 'eventosApp:lista_Eventos' %}"><h2>Ver Organizadores</h2></a>
             </div>
         </div>
       </div>

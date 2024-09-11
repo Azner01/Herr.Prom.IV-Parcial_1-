@@ -17,6 +17,14 @@
             h3{
                 text-align: center;
             }
+            span{
+                color: rgb(243, 235, 81);
+                text-decoration: none;
+                padding: 15px;
+                display: block;
+                text-align: right;
+                font-size: 20px;
+            }
             .navbar ul{
                 list-style-type: none;
                 background-color: #437f74;
@@ -46,26 +54,24 @@
     <h3>Gestor de Eventos</h3>
         <nav class="navbar">
         <ul>
-            <li><a href="../home">Home</a></li>
-            <li><a href="../organizadores">Organizadores</a></li>
-            <li><a href="../eventos">Eventos</a></li>
+            <li><a href="{% url 'eventosApp:pagina_principal' %}">Home</a></li>
+            <li><a href="{% url 'eventosApp:lista_organizadores' %}">Organizadores</a></li>
+            <li><a href="{% url 'eventosApp:lista_Eventos' %}">Eventos</a></li>
+            <span>{{request.user}}</span>
         </ul>
         </nav>
 
     <ul> 
         <h2>Lista de Organizadores</h2>
-        <!-- Iterate over object_list -->
-        {% for object in object_list %} 
-        <!-- Display Objects -->
+        <a href="{% url 'eventosApp:añadir_organizadores' %}"><h2>Añadir Nuevo Organizador</h2></a>
+
+        {% for organizador in object_list %} 
+            <li> {{organizador.nombre_org}} <a href="{% url 'eventosApp:editar_organizador' organizador.id%}">Editar</a> <a href="{% url 'eventosApp:borrar_organizador' organizador.id%}">Eliminar</a> </li>
+        {% endfor %}
+
         <li>{{ object.nombre_org }}</li>       
         <hr/> 
-        <!-- If object_list is empty  -->
-        {% empty %} 
-        <li>Ningún organizador a sido introducido.</li> 
-        {% endfor %} 
 
-        <a href="crear"><h2>Añadir Nuevo Organizador</h2></a>
-        <a href=""><h2>Editar Organizadores</h2></a>
     </ul>    
   </body>
 </html>

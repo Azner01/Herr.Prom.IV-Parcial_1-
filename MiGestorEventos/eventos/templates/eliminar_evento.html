@@ -1,8 +1,7 @@
-
 <!doctype html>
 <html lang="en">
   <head>
-      <title>Editar eventos</title>
+      <title>Eliminar eventos</title>
     <style>
 		body,
 		html {
@@ -13,6 +12,9 @@
 		}
     h3{
        text-align: center;
+    }
+    button{
+      align-items: center;
     }
 		.user_card {
 			width: 350px;
@@ -73,6 +75,7 @@
 		#div-content{
 			width: 300px; 
 			margin: 0 auto;
+			margin-top: 100px;
 		}
 	</style>
   </head>
@@ -81,20 +84,17 @@
           <div class="d-flex justify-content-center h-100">
             <div class="user_card">
               <div class="d-flex justify-content-center">
-                <h3 id="form-title">Editar evento</h3>
+                <h3 id="form-title">Crear evento</h3>
               </div>
                 <div class="d-flex justify-content-center form_container">
-                    {% if 'ok' in request.GET %}
-                      <p style="color: green">
-                        Evento editado correctamente
-                      </p>
-                    {% endif %}
                     <form method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="submit">Guardar</button>
-                    <a href="{% url 'eventosApp:lista_Eventos' %}"><h2>Ver Eventos</h2></a>
-                    </form>
+                    <h3>¿Estás seguro de borrar el evento?</h3>
+                    <button type="submit">
+                        <a href="{% url 'eventosApp:lista_Eventos' %}"><h2>Si, borrar el evento</h2></a>
+                    </button>
+                    <a href="{% url 'eventosApp:lista_Eventos' %}"><h2>No, volver</h2></a>
                 </div>
             </div>
           </div>
@@ -102,3 +102,4 @@
 </form>
   </body>
 </html>
+

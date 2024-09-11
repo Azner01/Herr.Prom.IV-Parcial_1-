@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-      <title>Editar eventos</title>
+      <title>Editar Organizador</title>
     <style>
 		body,
 		html {
@@ -81,19 +81,19 @@
           <div class="d-flex justify-content-center h-100">
             <div class="user_card">
               <div class="d-flex justify-content-center">
-                <h3 id="form-title">Editar evento</h3>
+                <h3 id="form-title">Editar Organizador</h3>
               </div>
                 <div class="d-flex justify-content-center form_container">
                     {% if 'ok' in request.GET %}
                       <p style="color: green">
-                        Evento editado correctamente
+                        Organizador editado correctamente
                       </p>
                     {% endif %}
                     <form method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit">Guardar</button>
-                    <a href="{% url 'eventosApp:lista_Eventos' %}"><h2>Ver Eventos</h2></a>
+                    <a href="{% url 'eventosApp:lista_organizadores' %}"><h2>Ver Organizadores</h2></a>
                     </form>
                 </div>
             </div>

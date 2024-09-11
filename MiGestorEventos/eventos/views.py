@@ -1,22 +1,26 @@
+from typing import Any
+from django.db.models.base import Model as Model
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
-# from django.http import HttpResponse
-# from django.views.generic import View
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.edit import FormView
 from django.contrib import messages
-
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
 def pagina_principal(request):
     return render(request, 'menu_principal.html')
 
+#Vistas asociada al modelo de evento
 
-def lista_eventos(request):
-    eventos = evento.objects.all()
-    return render(request, 'lista_eventos.html', {'eventos': eventos})
+class lista_eventos(ListView):
+    model = evento
+    template_name = 'lista_eventos.html'
+
 
 def crear_eventos(request):
     if request.method == 'POST':
@@ -28,10 +32,34 @@ def crear_eventos(request):
     return render(request, 'crear_evento.html', {'form': form})
 
 
+class editar_evento(UpdateView):
+    model = evento
+    form_class = formularioEvento
+    template_name = 'editar_eventos.html'
+    success_url ="."
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return evento.objects.get(id = id)
+    
+    def get_success_url(self):
+        return reverse('eventosApp:lista_Eventos')
+    
+
+class eliminar_evento(DeleteView):
+    model = evento
+    template_name = 'eliminar_evento.html'
+    success_url ="/gestor_eventos/eventos/"
+
+
+
+#Vistas asociada al modelo de organizador
+
+
 class organizador_lista(ListView):
     model = organizador
     template_name = 'lista_organizadores.html'
-    success_url = '/gestor_eventos/eventos/crear/'
+
 
 class organizador_añadir(CreateView):
     model = organizador
@@ -39,16 +67,27 @@ class organizador_añadir(CreateView):
     template_name = 'añadir_organizadores.html'
     success_url = '/gestor_eventos/organizadores/'
 
-# class editar_eventos(ListView):
-#     model = evento
-#     template_name = 'editar_eventos.html'
 
-class editar_evento(UpdateView):
-    model = evento
-    form_class = formularioEvento
-    template_name = 'editar_evento.html'
-    success_url ="/"
 
+class organizador_editar(UpdateView):
+    model = organizador
+    fields = ['nombre_org']
+    template_name = 'editar_organizador.html'
+    success_url ="."
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return organizador.objects.get(id = id)
+    
+    def get_success_url(self):
+        return reverse('eventosApp:lista_organizadores')
+
+class organizador_eliminar(DeleteView):
+    model = organizador
+    template_name = 'eliminar_organizador.html'
+    success_url ="/gestor_eventos/organizadores/"
+
+#Vistas asociada al modelo de inicio de sesión
 
 def pagina_registro(request):
     form = CreateUserForm()
@@ -65,6 +104,7 @@ def pagina_registro(request):
     return render(request, 'registro_login.html', {'form': form})
 
 def pagina_login(request):
+    context = {}
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -77,6 +117,6 @@ def pagina_login(request):
         else:
             messages.info(request, 'Usuario o contraseña incorrectas')
             return render(request, 'login.html', context)
-    context = {}
+    
     #Diseño de la página obtenido: https://jsfiddle.net/ivanov11/dghm5cu7/
     return render(request, 'login.html', context)

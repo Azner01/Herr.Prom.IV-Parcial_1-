@@ -72,10 +72,15 @@
 			padding: 10px;
 			margin-top: 10px;
 		}
+		#div-content{
+			width: 300px; 
+			margin: 0 auto;
+			margin-top: 100px;
+		}
 	</style>
   </head>
   <body>
-        <div class="container h-100" >
+        <div class="container h-100" id="div-content" >
           <div class="d-flex justify-content-center h-100">
             <div class="user_card">
               <div class="d-flex justify-content-center">
@@ -86,7 +91,7 @@
                       {% csrf_token %}
                       {{ form.as_p }}
                       <button type="submit">Crear Evento</button>
-                      <a href="."><h2>Ver Eventos</h2></a>
+                      <a href="{% url 'eventosApp:lista_organizadores' %}"><h2>Ver Eventos</h2></a>
                 </div>
             </div>
           </div>
