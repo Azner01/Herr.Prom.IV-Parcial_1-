@@ -62,12 +62,16 @@
         
     <h1>Lista de eventos</h1>
     <ul>
+        
         <a href="{% url 'eventosApp:crear_Eventos' %}"><h2>Crear Nuevo Evento</h2></a>
-      
+
+        <hr/> 
+
         {% for evento in object_list %}
             <li>{{ evento.nombre_event }} - {{ evento.fecha }} - {{ evento.organizador_relacion }} <a href="{% url 'eventosApp:editar_Eventos' evento.id%}">Editar</a> <a href="{% url 'eventosApp:borrar_Eventos' evento.id%}">Eliminar</a></li>
         {% endfor %}
 
+        <hr/> 
 
         <!-- <a href="crear"><h2>Editar Eventos</h2></a> -->
         

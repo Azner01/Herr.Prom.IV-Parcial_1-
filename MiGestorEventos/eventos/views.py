@@ -28,6 +28,7 @@ def crear_eventos(request):
         form = formularioEvento(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('eventosApp:lista_Eventos')
     else:
         form = formularioEvento()
     return render(request, 'crear_evento.html', {'form': form})
@@ -98,7 +99,7 @@ def pagina_registro(request):
             form.save()
             user = form.cleaned_data.get('username')
             messages.success(request, 'Cuenta fue creada por ' + user)
-            return redirect('.')
+            return redirect('eventosApp:pagina_login')
     else:
         form = CreateUserForm()
     #Diseño de la página obtenido: https://jsfiddle.net/ivanov11/hzf0jxLg/
@@ -114,7 +115,7 @@ def pagina_login(request):
         user = authenticate(request, username = username, password = password)
         if user is not None:
             login(request, user)
-            return redirect('../home')
+            return redirect('eventosApp:pagina_principal')
         else:
             messages.info(request, 'Usuario o contraseña incorrectas')
             return render(request, 'login.html', context)

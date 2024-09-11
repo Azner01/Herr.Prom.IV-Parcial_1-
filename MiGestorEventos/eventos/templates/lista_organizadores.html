@@ -65,11 +65,12 @@
         <h2>Lista de Organizadores</h2>
         <a href="{% url 'eventosApp:añadir_organizadores' %}"><h2>Añadir Nuevo Organizador</h2></a>
 
+        <hr/> 
+
         {% for organizador in object_list %} 
             <li> {{organizador.nombre_org}} <a href="{% url 'eventosApp:editar_organizador' organizador.id%}">Editar</a> <a href="{% url 'eventosApp:borrar_organizador' organizador.id%}">Eliminar</a> </li>
         {% endfor %}
-
-        <li>{{ object.nombre_org }}</li>       
+    
         <hr/> 
 
     </ul>    
