@@ -1,10 +1,8 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    {% block title %}
-      <title>Eventos</title>
-    {% endblock %}
-    <style>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Menu Inicio</title>
+        <style>
             body{
                 margin: 15px;
             }
@@ -40,27 +38,18 @@
             }
 
         </style>
-  </head>
-  <body>
-    <h3>Gestor de Eventos</h3>
+    </head>
+
+    <body>
+        <h3>Gestor de Eventos</h3>
         <nav class="navbar">
         <ul>
-            <li><a href="../home">Home</a></li>
-            <li><a href="../organizadores">Organizadores</a></li>
-            <li><a href="../eventos">Eventos</a></li>
+            <li><a href="home">Home</a></li>
+            <li><a href="organizadores">Organizadores</a></li>
+            <li><a href="eventos">Eventos</a></li>
+            <span>{{request.user}}</span>
         </ul>
         </nav>
-        
-    <h1>Lista de eventos</h1>
-    <ul>
-      
-        {% for evento in eventos %}
-            <li>{{ evento.nombre_event }} - {{ evento.fecha }} - ${{ evento.organizador_relacion }}</li>
-        {% endfor %}
-        <a href="crear"><h2>Crear Nuevo Evento</h2></a>
-        <a href="editar"><h2>Editar Evento</h2></a>
-        <!-- <a href="crear"><h2>Editar Eventos</h2></a> -->
-        
-    </ul>
-  </body>
+    </body>
+
 </html>

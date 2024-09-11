@@ -4,8 +4,54 @@
     {% block title %}
       <title>Organizadores</title>
     {% endblock %}
+
+    <style>
+            body{
+                margin: 15px;
+            }
+
+            main{
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+            h3{
+                text-align: center;
+            }
+            .navbar ul{
+                list-style-type: none;
+                background-color: #437f74;
+                padding: 0px;
+                overflow: hidden;
+            }
+
+            .navbar a{
+                color: white;
+                text-decoration: none;
+                padding: 15px;
+                display: block;
+                text-align: center;
+            }
+
+            .navbar a:hover{
+                background-color: hsl(0, 0%, 10%);
+            }
+
+            .navbar li{
+                float: left;
+            }
+
+        </style>
   </head>
   <body>
+    <h3>Gestor de Eventos</h3>
+        <nav class="navbar">
+        <ul>
+            <li><a href="../home">Home</a></li>
+            <li><a href="../organizadores">Organizadores</a></li>
+            <li><a href="../eventos">Eventos</a></li>
+        </ul>
+        </nav>
+
     <ul> 
         <h2>Lista de Organizadores</h2>
         <!-- Iterate over object_list -->
@@ -17,6 +63,9 @@
         {% empty %} 
         <li>Ningún organizador a sido introducido.</li> 
         {% endfor %} 
+
+        <a href="crear"><h2>Añadir Nuevo Organizador</h2></a>
+        <a href=""><h2>Editar Organizadores</h2></a>
     </ul>    
   </body>
 </html>

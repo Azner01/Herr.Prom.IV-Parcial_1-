@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% block title %}
+      <title>Crear eventos</title>
+    {% endblock %}
+  </head>
+  <body>
+        <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+        <a href=""><h2>Ver Eventos</h2></a>
+</form>
+  </body>
+</html>
